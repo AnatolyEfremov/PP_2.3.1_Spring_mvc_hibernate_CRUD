@@ -9,26 +9,33 @@ import web.model.User;
 import java.util.List;
 
 @Service
-@Transactional
 public class UserServiceImpl implements UserService{
 
-    @Autowired
-    UserDAO userDAO;
+
+    private final UserDAO userDAO;
+
+    public UserServiceImpl(UserDAO userDAO) {
+        this.userDAO = userDAO;
+    }
+    @Transactional
     @Override
     public List<User> getAllUsers() {
         return userDAO.getAllUsers();
     }
 
+    @Transactional
     @Override
     public void saveUser(User user) {
         userDAO.save(user);
     }
 
+    @Transactional
     @Override
     public void deleteUser(long id) {
         userDAO.deleteUser(id);
     }
 
+    @Transactional
     @Override
     public User getUser(long id) {
         return userDAO.getUser(id);
